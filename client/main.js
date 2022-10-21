@@ -66,8 +66,9 @@ function addFavColor(body) {
 
 
 
+function submitHandler(event) {
+    event.preventDefault()
 
-function submitHandler() {
     let favColorInput = document.querySelector('#color-input')
 
     // console.log(favColorInput.value)
@@ -81,11 +82,12 @@ function submitHandler() {
     favColorInput.value = ''
 }
 
-colorBtn.addEventListener('click', submitHandler)
+colorBtn.addEventListener('submit', submitHandler)
 
 
 
-function deleteColor() {
+function deleteColor(event) {
+    event.preventDefault()
     let deleteNum = deleteInput.value
 
     axios.delete(baseURL + 'colors/'+ deleteNum)
@@ -101,10 +103,15 @@ function deleteColor() {
             newElem.textContent = res.data[i].favColorInput
             displayBox.appendChild(newElem)
         }
+
+        deleteInput.value = ''
+    })
+    .catch((err) => {
+        console.log(err)
     })
 }
 
-deleteBtn.addEventListener('click', deleteColor)
+deleteBtn.addEventListener('submit', deleteColor)
 
 
 

@@ -84,10 +84,13 @@ module.exports = {
 
     deleteColor: (req, res) => {
         let deleteIndex = +req.params.id
-        console.log(deleteIndex)
+        if (deleteIndex > 0 && deleteIndex <= colorsDatabase.length) {
         colorsDatabase.splice((deleteIndex - 1), 1)
 
         res.status(200).send(colorsDatabase)
+        } else {
+            res.status(400).send("that's not a valid color list number!")
+        }
     }
 
 }
