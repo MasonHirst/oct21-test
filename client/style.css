@@ -1,0 +1,15 @@
+.fortune-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fortune-string {
+    /* background-color: aqua; */
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+

@@ -91,6 +91,12 @@ module.exports = {
         } else {
             res.status(400).send("that's not a valid color list number!")
         }
-    }
+    },
 
+    changeColor: (req, res) => {
+        let newColor = req.params.id
+
+        colorsDatabase[0].favColorInput = newColor
+        res.status(200).send(colorsDatabase)
+    }
 }

@@ -7,7 +7,7 @@ app.use(cors());
 
 app.use(express.json());
 
-const { getCompliment, getFortune, addFavColor, deleteColor } = require('./controller')
+const { getCompliment, getFortune, addFavColor, deleteColor, changeColor } = require('./controller')
 
 app.get("/api/compliment", getCompliment);
 
@@ -18,7 +18,7 @@ app.post('/api/colors/', addFavColor)
 
 app.delete('/api/colors/:id', deleteColor)
 
-
+app.put('/api/colors/:id', changeColor)
 
 
 

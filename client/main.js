@@ -1,6 +1,8 @@
 const complimentBtn = document.getElementById("complimentButton")
 const fortuneBtn = document.querySelector('#fortuneButton')
 const colorBtn = document.querySelector('#color-button')
+const changeSubmitBtn = document.querySelector('#change-color-form')
+const changeInput = document.querySelector('#change-color-input')
 
 const deleteBtn = document.querySelector('#delete-button')
 const deleteInput = document.querySelector('#delete-input')
@@ -26,9 +28,10 @@ complimentBtn.addEventListener('click', getCompliment)
 function getFortune() {
     axios.get(baseURL + 'fortune/')
     .then((res) => {
-        displayBox.innerHTML = `<img src="../cookie.png" id="cookie-img">
+        displayBox.innerHTML = `<div class="fortune-box"><img src="../cookie.png" id="cookie-img">
         <div id="fortuneCont">
-        <h3>${res.data}</h3>
+        <span class="fortune-string">${res.data}</span>
+        </div>
         </div>`
         // console.log('button clicked!')
     })
@@ -115,5 +118,26 @@ deleteBtn.addEventListener('submit', deleteColor)
 
 
 
+function changeColor(event) {
+    event.preventDefault()
+    let newColor = changeInput.value
 
+    axios.put(baseURL + 'colors/' + newColor)
+    .then((res) => {
+        displayBox.innerHTML = ''
 
+        let newElement = document.createElement('h3')
+        newElement.textContent = 'Favorite Colors: '
+        displayBox.appendChild(newElement)
+        for (let i = 0; i < res.data.length; i++) {
+            let newElem = document.createElement('p')
+            newElem.textContent = res.data[i].favColorInput
+            displayBox.appendChild(newElem)
+        }
+
+        changeInput.value = ''
+    })
+
+}
+
+changeSubmitBtn.addEventListener('submit', changeColor)
