@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    /* background-color: aqua; */
 }
 
 .fortune-string {
@@ -13,3 +14,6 @@
     border-radius: 10px;
 }
 
+img {
+    max-width: 350px;
+}
